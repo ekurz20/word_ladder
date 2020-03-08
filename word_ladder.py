@@ -31,7 +31,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     text_file = open(dictionary_file, 'r')
     list1= text_file.readlines()
     list2 = [x[:-1] for x in list1]
-    list2[len(list2)-1)='zymes'
+    list2[len(list2)-1]='zymes'
 
     s=Stack()
     s.push(start_word)
