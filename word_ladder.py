@@ -28,6 +28,38 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     Whenever it is impossible to generate a word ladder between the two words,
     the function returns `None`.
     '''
+    text_file = open(dictionary_file, 'r')
+    list1= text_file.readlines()
+    list2 = [x[:-1] for x in list1]
+    list2[len(list2)-1)='zymes'
+
+    s=Stack()
+    s.push(start_word)
+    q = Queue()
+    q.enque(s)
+   
+    if start_word == end_word:
+        return [start_word]
+    if len(start_word) > 5 or len(end_word) > 5:
+        return 'None'
+
+    while q.isEmpty() == False:
+        stack = q.dequeue()
+        for i in list2:
+            if _adjacent(stack.peek(),i)==True:
+                if i == end_word:
+                    stack.push(end_word)
+                    out = []
+                    while stack.isEmpty() == False:
+                        out.append(stack.pop())
+                    out.reverse()
+                cstack = copy.deepcopy(stack)
+                cstack.push(i)
+                q.enqueue(cstack)
+                list2.remove(i)
+        if q.isEmpty()==True:
+            return 'None'
+
 
 
 def verify_word_ladder(ladder):
@@ -35,6 +67,18 @@ def verify_word_ladder(ladder):
     Returns True if each entry of the input list is adjacent to its neighbors;
     otherwise returns False.
     '''
+    s = Stack()
+    for i in ladder:
+        s.push(i)
+    if s.size()==0:
+        return False
+    while s.isEmpty()==False:
+        if s.size() == 1:
+            return True
+        a=s.pop()
+        b = s.peek()
+        if _adjacent(a,b)==False:
+            return False
 
 
 def _adjacent(word1, word2):
@@ -47,3 +91,18 @@ def _adjacent(word1, word2):
     >>> _adjacent('stone','money')
     False
     '''
+    if len(word1)>5:
+        return False
+    if len(word2)>5:
+        return False
+
+    count = 0
+    i = 0
+    while i < 5:
+        if word1[i]!=word2[i]:
+            if count == 1:
+                return False
+            count +=1
+        i+=1
+    if count == 1:
+        return True
