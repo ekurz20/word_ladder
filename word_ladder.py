@@ -71,7 +71,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     s=Stack()
     s.push(start_word)
     q = Queue()
-    q.enque(s)
+    q.enqueue(s)
    
     if start_word == end_word:
         return [start_word]
