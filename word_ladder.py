@@ -1,5 +1,7 @@
 #!/bin/python3
 
+import copy
+
 class Queue:
     def __init__(self):
         self.items = []
