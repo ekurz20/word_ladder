@@ -78,7 +78,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     if start_word == end_word:
         return [start_word]
     if len(start_word) > 5 or len(end_word) > 5:
-        return 'None'
+        return None
 
     while q.isEmpty() == False:
         stack = q.dequeue()
@@ -96,7 +96,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
                 q.enqueue(cstack)
                 list2.remove(i)
         if q.isEmpty()==True:
-            return 'None'
+            return None
 
 
 
