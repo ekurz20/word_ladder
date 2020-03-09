@@ -90,6 +90,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
                     while stack.isEmpty() == False:
                         out.append(stack.pop())
                     out.reverse()
+                    return out
                 cstack = copy.deepcopy(stack)
                 cstack.push(i)
                 q.enqueue(cstack)
